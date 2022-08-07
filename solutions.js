@@ -20,7 +20,7 @@ Constraints:
  * @param {number[]} nums
  * @return {number}
  *
- * J solution: >./ > #each <;.(_1) 0,input =: 1 1 0 1 1 1
+ * J solution: >./ #;.(_1) 0,input =: 1 1 0 1 1 1
  */
 var findMaxConsecutiveOnes = function(nums) {
     let maxOnes = 0
