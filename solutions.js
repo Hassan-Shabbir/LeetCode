@@ -20,7 +20,7 @@ Constraints:
  * @param {number[]} nums
  * @return {number}
  *
- * J solution: >./ #;.(_1) 0,input =: 1 1 0 1 1 1
+ * J solution: >./ #;.(_1) 0, input =: 1 1 0 1 1 1
  */
 var findMaxConsecutiveOnes = function(nums) {
     let maxOnes = 0
@@ -70,7 +70,7 @@ Constraints:
  * @param {number[]} nums
  * @return {number}
  *
- * J solution: +/ 0= 2| #;.(_1) ' ',": 12 345 2 6 7896
+ * J solution: +/ 0= 2| #;.(_1) ' ', ": 12 345 2 6 7896
  */
 var findNumbers = function(nums) {
     evenNums = 0
@@ -80,4 +80,52 @@ var findNumbers = function(nums) {
         }
     }
     return evenNums
-};
+}
+
+/**
+ *Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+
+Example 1:
+
+Input: nums = [-4,-1,0,3,10]
+Output: [0,1,9,16,100]
+Explanation: After squaring, the array becomes [6,1,0,9,100].
+After sorting, it becomes [0,1,9,16,100].
+
+Example 2:
+
+Input: nums = [-7,-3,2,3,11]
+Output: [4,9,9,49,121]
+
+Constraints:
+
+    1 <= nums.length <= 104
+    -104 <= nums[i] <= 104
+    nums is sorted in non-decreasing order.
+ 
+Follow up: Squaring each element and sorting the new array is very trivial, could you find an O(n) solution using a different approach?1
+ * @param {number[]} nums
+ * @return {number[]}
+ * J solution: /:~ *: _4 _1 0 3 10
+ */
+var sortedSquares = function(nums) {
+    let negSquares = []
+    let squares = []
+    for (let num of nums) {
+        if (num < 0) {
+            negSquares.push(num * num)
+        }
+        else {
+            while (negSquares.length > 0 && negSquares[negSquares.length-1] < num * num) {
+                squares.push(negSquares.pop())
+            }
+            squares.push(num * num)
+        }
+    }   
+    while (negSquares.length > 0) {
+        squares.push(negSquares.pop())
+    }
+    return squares
+}
+
+
