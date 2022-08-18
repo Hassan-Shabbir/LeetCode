@@ -469,3 +469,11 @@ var validMountainArray = arr => {
     }
     return valid && !increasing
 }
+
+// Longest Absolute File Path Problem In J 
+// ]a =: 'dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext'
+// ]b =: {{ }:each '\n' cut ('\\t';'@') rxrplc y }} a
+// ]depth =: {{ > {."(1) b,.~ +/each '@'=each y }} b
+// ]data =: 0, {{ > #each }:each '\n' cut ('\\t';'') rxrplc y }} a
+// ]idxOfParent =: 0 0 , }. 1+ {{ > ({:each <\ 0>. 1-~ y) i:~each <\ y }} depth
+// {{ data + data {~ idxOfParent [ idxOfParent =: {~ idxOfParent }} ^:(_) ''
