@@ -477,3 +477,7 @@ var validMountainArray = arr => {
 // ]data =: 0, {{ > #each }:each '\n' cut ('\\t';'') rxrplc y }} a
 // ]idxOfParent =: 0 0 , }. 1+ {{ > ({:each <\ 0>. 1-~ y) i:~each <\ y }} depth
 // {{ data + data {~ idxOfParent [ idxOfParent =: {~ idxOfParent }} ^:(_) ''
+
+// Remove first matching char from string
+// rmFirstChar =: [#~i.~:i.@:#@:[ 
+// '551' rmFirstChar '5' NB. ==> '51'
