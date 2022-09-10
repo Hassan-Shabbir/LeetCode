@@ -1016,6 +1016,20 @@ var twoSum = (nums, target) => {
     }
     return map.get(target/2)
 }
+var twoSum = (nums, target) => {
+    let map = new Map()
+    for (let i = 0; i < nums.length; i++) {
+        map.set(nums[i], i)
+    }
+    for (let i = 0; i <= target; i++) {
+        if (map.get(i) != undefined 
+            && map.get(target-i) != undefined 
+            && map.get(i) != map.get(target-i)) 
+        {
+            return [map.get(i), map.get(target-i)]
+        }
+    }
+}
 
 
 /**
