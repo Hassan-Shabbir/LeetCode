@@ -997,6 +997,25 @@ var twoSum = (nums, target) => {
         }
     }
 }
+var twoSum = (nums, target) => {
+    let map = new Map()
+    for (let i = 0; i < nums.length; i++) {
+        if (map.get(nums[i]) == undefined) {
+            map.set(nums[i], i)
+        } else {
+            map.set(nums[i], [map.get(nums[i]), i])
+        }
+    }
+    for (let i = 0; i <= target; i++) {
+        if (map.get(i) != undefined 
+            && map.get(target-i) != undefined 
+            && map.get(i) != map.get(target-i)) 
+        {
+            return [map.get(i), map.get(target-i)]
+        }
+    }
+    return map.get(target/2)
+}
 
 
 /**
@@ -1073,7 +1092,6 @@ Constraints:
  */
 var isPalindrome = s => {
     s = s.toLowerCase().replace(/[^a-z0-9]*/g, '')
-    
     for (let i = 0; i < s.length; i++) {
         if (s[i] !== s[s.length-i-1]) {
             return false
@@ -1081,3 +1099,7 @@ var isPalindrome = s => {
     }
     return true
 }
+
+
+J solution: {{ (<./ y) -~ >./ y }.~ y i. <./ y }} 7 1 5 3 6 4
+
