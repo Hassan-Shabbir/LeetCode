@@ -989,46 +989,14 @@ Follow-up: Can you come up with an algorithm that is less than O(n2) time comple
  * J solution: 6 {{ I. +./ x= (~:/~ i. # y) *. +/~ y }} 3 2 4
  */
 var twoSum = (nums, target) => {
-    for (let i = 0; i < nums.length; i++) {
-        for (let j = 0; j < nums.length; j++) {
-            if (nums[i] + nums[j] == target && i !== j) {
-                return [i, j]
-            }
-        }
+  let map = new Map()
+  for (let i = 0; i < nums.length; i++) {
+    if (!map.has(target - nums[i])) {
+      map.set(nums[i], i)
+    } else {
+      return [map.get(target - nums[i]), i]
     }
-}
-var twoSum = (nums, target) => {
-    let map = new Map()
-    for (let i = 0; i < nums.length; i++) {
-        if (map.get(nums[i]) == undefined) {
-            map.set(nums[i], i)
-        } else {
-            map.set(nums[i], [map.get(nums[i]), i])
-        }
-    }
-    for (let i = 0; i <= target; i++) {
-        if (map.get(i) != undefined 
-            && map.get(target-i) != undefined 
-            && map.get(i) != map.get(target-i)) 
-        {
-            return [map.get(i), map.get(target-i)]
-        }
-    }
-    return map.get(target/2)
-}
-var twoSum = (nums, target) => {
-    let map = new Map()
-    for (let i = 0; i < nums.length; i++) {
-        map.set(nums[i], i)
-    }
-    for (let i = 0; i <= target; i++) {
-        if (map.get(i) != undefined 
-            && map.get(target-i) != undefined 
-            && map.get(i) != map.get(target-i)) 
-        {
-            return [map.get(i), map.get(target-i)]
-        }
-    }
+  }
 }
 
 
@@ -1114,6 +1082,49 @@ var isPalindrome = s => {
     return true
 }
 
+/**
+ *121. Best Time to Buy and Sell Stock
+Easy
 
-J solution: {{ (<./ y) -~ >./ y }.~ y i. <./ y }} 7 1 5 3 6 4
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
 
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+Example 1:
+
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+
+Example 2:
+
+Input: prices = [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transactions are done and the max profit = 0.
+
+Constraints:
+
+    1 <= prices.length <= 105
+    0 <= prices[i] <= 104
+ * @param {number[]} prices
+ * @return {number}
+ * J solution: {{ >./ y -~ >./\. y }}
+ */
+var maxProfit = prices => {
+		let buyAt = prices[0]
+		let sellAt = prices[0]
+		let maxProfit = 0
+		for (let price of prices) {
+				if (price < buyAt) { // update both buy and sell
+						buyAt = price
+						sellAt = price
+				} else if (price - buyAt > maxProfit) { // update sell
+						sellAt = price
+						maxProfit = Math.max(maxProfit, sellAt - buyAt)
+				}
+		}
+    return maxProfit
+}
